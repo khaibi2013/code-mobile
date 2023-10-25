@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/cellTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textColor="@color/darkGray"
+            android:textSize="25sp"/>
+    <TextView
+            android:id="@+id/cellDestination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Destination"
+            android:maxLines="1"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/darkGray"
+            android:textSize="19sp"/>
+
+    <TextView
+            android:id="@+id/cellDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:maxLines="1"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/darkGray"
+            android:textSize="19sp"/>
+
+    <TextView
+            android:id="@+id/cellPurpose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Purpose"
+            android:maxLines="1"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/darkGray"
+            android:textSize="18sp"/>
+
+    <TextView
+            android:id="@+id/cellRisk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Risk"
+            android:maxLines="1"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/darkGray"
+            android:textSize="16sp"/>
+
+    <TextView
+            android:id="@+id/cellDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DateTime"
+            android:maxLines="1"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/darkGray"
+            android:textSize="15sp"/>
+
+    <TextView
+            android:id="@+id/cellTime"
+            android:layout_width="88dp"
+            android:layout_height="24dp"
+            android:text="Time"
+            android:maxLines="1"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/darkGray"
+            android:textSize="10sp"/>
+
+</LinearLayout>
