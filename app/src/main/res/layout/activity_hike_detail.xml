@@ -6,7 +6,20 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".TripDetailActivity">
+        tools:context=".HikeDetailActivity">
+
+    <EditText
+        android:id="@+id/locationId"
+        android:layout_width="236dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="312dp"
+        android:layout_marginEnd="20dp"
+        android:maxLines="1"
+        android:textColor="@color/darkGray"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"></EditText>
 
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -54,15 +67,15 @@
 
 
     <Button android:layout_width="249dp" android:layout_height="51dp"
-            android:text="List Cost"
+            android:text="Observation"
             android:textSize="25sp"
             android:textColor="@color/darkGray"
             android:backgroundTint="@color/teal_200"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:onClick="listCost"
+            android:onClick="listObservation"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@+id/toolbar"
-            android:layout_marginTop="60dp" android:id="@+id/list_cost"
+            android:layout_marginTop="60dp" android:id="@+id/list_observation"
             app:layout_constraintEnd_toEndOf="parent"></Button>
     <TextView
             android:id="@+id/error"
@@ -77,16 +90,18 @@
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.593"></TextView>
 
     <TextView
-            android:layout_width="150dp"
-            android:layout_height="69dp"
-            android:text="Name the Trip:"
-            android:textSize="25sp"
-            android:textColor="@color/darkGray"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:id="@+id/textView"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@+id/toolbar"
-            android:layout_marginTop="172dp" android:layout_marginStart="4dp"></TextView>
+        android:id="@+id/textView"
+        android:layout_width="150dp"
+        android:layout_height="69dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="160dp"
+        android:text="Name of Hire:"
+        android:textColor="@color/darkGray"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"></TextView>
     <EditText
             android:id="@+id/titleEdit"
             android:layout_width="239dp" android:layout_height="76dp"
@@ -97,45 +112,65 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="156dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp"></EditText>
-    <TextView
-            android:layout_width="143dp"
-            android:layout_height="57dp"
-            android:text="Description"
-            android:textSize="25sp"
-            android:textColor="@color/darkGray"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:id="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/toolbar"
-            android:layout_marginTop="296dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"></TextView>
-
-    <EditText
-            android:id="@+id/descriptionEdit"
-            android:layout_width="236dp" android:layout_height="60dp"
-            android:textSize="15sp"
-            android:maxLines="1"
-            android:textColor="@color/darkGray"
-            android:layout_gravity="center"
-            app:layout_constraintTop_toTopOf="@+id/toolbar"
-            android:layout_marginTop="288dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp"></EditText>
 
 
     <TextView
-            android:layout_width="144dp"
-            android:layout_height="75dp"
-            android:text="Purpose of the trip:"
-            android:textSize="18sp"
-            android:textColor="@color/darkGray"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:id="@+id/textView01"
-            app:layout_constraintTop_toTopOf="@+id/toolbar"
-            android:layout_marginTop="372dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="12dp"></TextView>
+        android:id="@+id/textView2"
+        android:layout_width="143dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="244dp"
+        android:text="Distance Difficulty:"
+        android:textColor="@color/darkGray"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"></TextView>
+
     <EditText
-            android:id="@+id/purposeEdit"
+        android:id="@+id/distanceDifficultyEdit"
+        android:layout_width="236dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="244dp"
+        android:layout_marginEnd="16dp"
+        android:maxLines="1"
+        android:textColor="@color/darkGray"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"></EditText>
+
+    <TextView
+        android:id="@+id/textView01"
+        android:layout_width="141dp"
+        android:layout_height="54dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="388dp"
+        android:text="Distance Length:"
+        android:textColor="@color/darkGray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"></TextView>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="141dp"
+        android:layout_height="54dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="316dp"
+        android:text="Location:"
+        android:textColor="@color/darkGray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"></TextView>
+
+    <EditText
+            android:id="@+id/lengthEdit"
             android:layout_width="236dp" android:layout_height="60dp"
             android:textSize="15sp"
             android:maxLines="1"
@@ -149,7 +184,7 @@
     <TextView
             android:layout_width="143dp"
             android:layout_height="57dp"
-            android:text="Destination"
+            android:text="Describe the distance"
             android:textSize="25sp"
             android:textColor="@color/darkGray"
             android:textStyle="bold"
@@ -205,7 +240,7 @@
     <TextView
             android:layout_width="149dp"
             android:layout_height="52dp"
-            android:text="Is the trip risky?"
+            android:text="Parking"
             android:textSize="18sp"
             android:textColor="@color/darkGray"
             android:textStyle="bold"

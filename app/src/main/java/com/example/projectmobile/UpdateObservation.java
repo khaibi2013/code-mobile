@@ -7,20 +7,20 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class UpdateCost extends AppCompatActivity {
+public class UpdateObservation extends AppCompatActivity {
 
-    private EditText costEdit, commentEdit;
+    private EditText observationEdit, commentEdit;
 
     private Button deleteCButton;
 
     private int passedCostId;
 
-    Costs selectedCost;
+    Observation selectedCost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_cost);
+        setContentView(R.layout.activity_update_observation);
 
         initWidgets();
         checkForEdit();
@@ -30,33 +30,33 @@ public class UpdateCost extends AppCompatActivity {
 
         Intent previousIntent = getIntent();
 
-        passedCostId = previousIntent.getIntExtra(Costs.COST_EDIT_EXTRA, -1);
+        passedCostId = previousIntent.getIntExtra(Observation.COST_EDIT_EXTRA, -1);
 
 
-        costEdit.setText(selectedCost.getCost());
+        observationEdit.setText(selectedCost.getCost());
         commentEdit.setText(selectedCost.getComment());
 
     }
 
     private void initWidgets() {
-        costEdit = findViewById(R.id.costEdit);
+        observationEdit = findViewById(R.id.observationEdit);
         commentEdit = findViewById(R.id.commentEdit);
         deleteCButton = findViewById(R.id.deleteCost);
 
     }
 
 
-    public void updateCost(View view) {
+    public void updateObservation(View view) {
 
-        SQLiteManagerCost sqLiteManager = SQLiteManagerCost.instanceOfDatabase(this);
+        SQLiteManagerObservation sqLiteManager = SQLiteManagerObservation.instanceOfDatabase(this);
         String comment, cost;
 
         comment = String.valueOf(commentEdit.getText());
-        cost = String.valueOf(costEdit.getText());
+        cost = String.valueOf(observationEdit.getText());
 
         selectedCost.setCost(cost);
         selectedCost.setComment(comment);
-        sqLiteManager.updateCostInDB(selectedCost);
+        sqLiteManager.updateObservationInDB(selectedCost);
 
         finish();
     }

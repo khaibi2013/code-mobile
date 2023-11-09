@@ -13,9 +13,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private ListView noteListView;
-    ArrayList<Trip> nonDelete = new ArrayList<>();
+    ArrayList<Hike> nonDelete = new ArrayList<>();
     EditText search;
-    NoteAdapter noteAdapter;
+    HikeAdapter noteAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
         noteListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Trip selectedNote = (Trip) noteListView.getItemAtPosition(position);
-                Intent editNote = new Intent(getApplicationContext(), TripDetailActivity.class);
-                editNote.putExtra(Trip.NOTE_EDIT_EXTRA, selectedNote.getId());
+                Hike selectedNote = (Hike) noteListView.getItemAtPosition(position);
+                Intent editNote = new Intent(getApplicationContext(), HikeDetailActivity.class);
+                editNote.putExtra(Hike.NOTE_EDIT_EXTRA, selectedNote.getId());
 
                 startActivity(editNote);
             }
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setNoteTripAdapter() {
-        noteAdapter = new NoteAdapter(getApplicationContext(), Trip.nonDeleteNote());
+        noteAdapter = new HikeAdapter(getApplicationContext(), Hike.nonDeleteNote());
         noteListView.setAdapter(noteAdapter);
 
     }
@@ -65,11 +65,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void newNote(View view) {
+    public void newHike(View view) {
 
 
-        Intent newNoteIntent = new Intent(this, TripDetailActivity.class);
-        startActivity(newNoteIntent);
+        Intent newHikeIntent = new Intent(this, HikeDetailActivity.class);
+        startActivity(newHikeIntent);
 
     }
 
@@ -87,12 +87,12 @@ public class MainActivity extends AppCompatActivity {
 
         SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this);
         sqLiteManager.searchNote(searchKeyWord);
-        noteAdapter = new NoteAdapter(getApplicationContext(), Trip.searchNotes());
+        noteAdapter = new HikeAdapter(getApplicationContext(), Hike.searchNotes());
         noteListView.setAdapter(noteAdapter);
     }
 
 
-    public void deleteAllTrip(View view) {
+    public void deleteAllHike(View view) {
         SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this);
         sqLiteManager.deleteAll();
         Intent back = new Intent(getApplicationContext(), MainActivity.class);

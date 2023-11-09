@@ -11,9 +11,9 @@ import android.os.Bundle;
 
 import java.util.Calendar;
 
-public class TripDetailActivity extends AppCompatActivity {
+public class HikeDetailActivity extends AppCompatActivity {
 
-    private EditText titleEdit , descEdit, purposeEdit, destinationEdit;
+    private EditText titleEdit , descEdit, lengthEdit, destinationEdit, locationEdit ;
     private  RadioButton radioButtonTrip;
 
     private int year, mMonth, mDay;
@@ -24,18 +24,16 @@ public class TripDetailActivity extends AppCompatActivity {
     private RadioButton radioButtonNothing;
     private int mHour, mMinute;
 
-    private Button deleteButton, listCostButton;
+    private Button deleteButton, listObservationButton;
     private TextView error;
-    Trip selectedNote;
+    Hike selectedNote;
 
     private Button dateButton, timeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_note_detail);
-
-
+        setContentView(R.layout.activity_hike_detail);
         initWidgets();
         checkForEdit();
     }
@@ -44,8 +42,8 @@ public class TripDetailActivity extends AppCompatActivity {
 
         Intent previousIntent = getIntent();
 
-        int passedNoteId = previousIntent.getIntExtra(Trip.NOTE_EDIT_EXTRA, -1);
-        selectedNote  = Trip.getNoteForID(passedNoteId);
+        int passedNoteId = previousIntent.getIntExtra(Hike.NOTE_EDIT_EXTRA, -1);
+        selectedNote  = Hike.getNoteForID(passedNoteId);
 
         System.out.println(selectedNote);
 
@@ -62,7 +60,7 @@ public class TripDetailActivity extends AppCompatActivity {
                 radioButtonNothing.setChecked(true);
 
             }
-            purposeEdit.setText(selectedNote.getPurpose());
+            lengthEdit.setText(selectedNote.getPurpose());
             titleEdit.setText(selectedNote.getTitle());
             destinationEdit.setText(selectedNote.getDestination());
             dateButton.setText(selectedNote.getDatetime());
@@ -70,7 +68,7 @@ public class TripDetailActivity extends AppCompatActivity {
             descEdit.setText(selectedNote.getDescription());
         }else {
             deleteButton.setVisibility(View.INVISIBLE);
-            listCostButton.setVisibility(View.INVISIBLE);
+            listObservationButton.setVisibility(View.INVISIBLE);
 
 
         }
@@ -82,10 +80,12 @@ public class TripDetailActivity extends AppCompatActivity {
         error = findViewById(R.id.error);
         titleEdit = findViewById(R.id.titleEdit);
         deleteButton = findViewById(R.id.deleteNoteButton);
-        descEdit = findViewById(R.id.descriptionEdit);
-        listCostButton = findViewById(R.id.list_cost);
-        purposeEdit = findViewById(R.id.purposeEdit);
+        descEdit = findViewById(R.id.distanceDifficultyEdit);
+        listObservationButton = findViewById(R.id.list_observation);
+        lengthEdit = findViewById(R.id.lengthEdit);
         destinationEdit = findViewById(R.id.destinationEdit);
+        locationEdit = findViewById(R.id.locationId);
+
 
 
         dateButton = findViewById(R.id.datePickerButton);
@@ -135,13 +135,13 @@ public class TripDetailActivity extends AppCompatActivity {
     }
 
     public void saveNote(View view) {
-        String title, desc, date,time, groupTrip, purpose , destination;
+        String title, desc, date,time, groupTrip, purpose , destination, location;
         int groupTripCheckedRadioButtonId = this.radioGroupTrip.getCheckedRadioButtonId();
         radioButtonTrip = (RadioButton) this.findViewById(groupTripCheckedRadioButtonId);
 
         SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this);
 
-        if(TextUtils.isEmpty(titleEdit.getText()) || TextUtils.isEmpty(descEdit.getText()) || TextUtils.isEmpty(purposeEdit.getText()) || TextUtils.isEmpty(destinationEdit.getText()) ){
+        if(TextUtils.isEmpty(titleEdit.getText()) || TextUtils.isEmpty(descEdit.getText()) || TextUtils.isEmpty(lengthEdit.getText()) || TextUtils.isEmpty(destinationEdit.getText()) ){
             error.setText("Enter all the entries");
 
         }else {
@@ -152,14 +152,15 @@ public class TripDetailActivity extends AppCompatActivity {
             desc = String.valueOf(descEdit.getText());
             date = String.valueOf(dateButton.getText());
             time = String.valueOf(timeButton.getText());
-            purpose = String.valueOf(purposeEdit.getText());
+            purpose = String.valueOf(lengthEdit.getText());
+            location = String.valueOf(locationEdit.getText());
 
             if (selectedNote == null){
-                int id =  Trip.notes.size();
+                int id =  Hike.notes.size();
 
-                Trip newNote = new Trip(id,title,desc,date,time,groupTrip,purpose,destination);
-                Trip.notes.add(newNote);
-                sqLiteManager.addTripIntoDatabase(newNote);
+                Hike newHike = new Hike(id,title,desc,date,time,groupTrip,purpose,destination, location);
+                Hike.notes.add(newHike);
+                sqLiteManager.addTripIntoDatabase(newHike);
 
             }else{
 
@@ -170,6 +171,7 @@ public class TripDetailActivity extends AppCompatActivity {
                 selectedNote.setPurpose(purpose);
                 selectedNote.setGroupRisky(groupTrip);
                 selectedNote.setDescription(desc);
+                selectedNote.setLocation(location);
                 sqLiteManager.updateTripDB(selectedNote);
 
             }
@@ -214,12 +216,12 @@ public class TripDetailActivity extends AppCompatActivity {
 
     }
 
-    public void listCost(View view) {
+    public void listObservation(View view) {
 
-        Intent listCostIntent = new Intent(this, ListOfExpenses.class);
-        listCostIntent.putExtra(Costs.COST_LIST_EXTRA, selectedNote.getId());
+        Intent listObservationIntent = new Intent(this, ListOfObservation.class);
+        listObservationIntent.putExtra(Observation.COST_LIST_EXTRA, selectedNote.getId());
 
-        startActivity(listCostIntent);
+        startActivity(listObservationIntent);
 
     }
 

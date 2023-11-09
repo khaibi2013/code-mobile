@@ -10,26 +10,26 @@
             android:theme="@style/Theme.ProjectMobile">
         <activity
                 android:label="@string/edit_cost"
-                android:name=".EditCost"
+                android:name=".EditObservation"
                 android:exported="true"/>
         <activity
                 android:label="@string/edit_cost"
-                android:name=".UpdateCost"
+                android:name=".UpdateObservation"
                 android:exported="true"/>
         <activity
                 android:label="@string/create_cost"
-                android:name=".GenerateCost"
+                android:name=".GenerateObservation"
                 android:exported="true"/>
         <activity
-                android:label="@string/list_cost"
-                android:name=".ListOfExpenses"
+                android:label="@string/list_observation"
+                android:name=".ListOfObservation"
                 android:exported="true"/>
         <activity
                 android:label="@string/detail_trip"
-                android:name=".TripDetailActivity"
+                android:name=".HikeDetailActivity"
                 android:exported="true"/>
         <activity
-                android:label="@string/list_trip"
+                android:label="@string/list_hike"
                 android:name=".MainActivity"
                 android:exported="true">
             <intent-filter>

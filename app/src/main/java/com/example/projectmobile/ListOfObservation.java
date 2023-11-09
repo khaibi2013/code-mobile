@@ -7,7 +7,7 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ListOfExpenses extends AppCompatActivity {
+public class ListOfObservation extends AppCompatActivity {
 
     private ListView costListView;
     int passedCostId;
@@ -16,7 +16,7 @@ public class ListOfExpenses extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_of_expenses);
+        setContentView(R.layout.activity_list_of_observation);
 
         iniWidget();
         loadFromDBToMemory();
@@ -29,11 +29,11 @@ public class ListOfExpenses extends AppCompatActivity {
         costListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Costs selectedCost = (Costs) costListView.getItemAtPosition(position);
-                Intent editCost = new Intent(getApplicationContext(), EditCost.class);
+                Observation selectedCost = (Observation) costListView.getItemAtPosition(position);
+                Intent editCost = new Intent(getApplicationContext(), EditObservation.class);
 
-                editCost.putExtra(Costs.COST_EDIT_EXTRA, selectedCost.getId());
-                editCost.putExtra(Costs.INPUT_COST_EXTRA, passedCostId );
+                editCost.putExtra(Observation.COST_EDIT_EXTRA, selectedCost.getId());
+                editCost.putExtra(Observation.INPUT_COST_EXTRA, passedCostId );
 
                 startActivity(editCost);
             }
@@ -42,19 +42,19 @@ public class ListOfExpenses extends AppCompatActivity {
 
     private void loadFromDBToMemory() {
         Intent previousIntent = getIntent();
-        passedCostId = previousIntent.getIntExtra(Costs.COST_LIST_EXTRA, -1);
+        passedCostId = previousIntent.getIntExtra(Observation.COST_LIST_EXTRA, -1);
 
-        SQLiteManagerCost sqLiteManager = SQLiteManagerCost.instanceOfDatabase(this);
+        SQLiteManagerObservation sqLiteManager = SQLiteManagerObservation.instanceOfDatabase(this);
         sqLiteManager.populateCostsListArray(passedCostId);
     }
 
     private void iniWidget() {
 
-        costListView = findViewById(R.id.listCostView);
+        costListView = findViewById(R.id.listObservationView);
 
     }
     private void setNoteAdapter() {
-        CostAdapter noteAdapter = new CostAdapter(getApplicationContext(), Costs.nonDeleteCost());
+        ObservationAdapter noteAdapter = new ObservationAdapter(getApplicationContext(), Observation.nonDeleteCost());
         costListView.setAdapter(noteAdapter);
 
     }
@@ -67,18 +67,18 @@ public class ListOfExpenses extends AppCompatActivity {
     }
 
 
-    public void newCost(View view) {
-        Intent listCostIntent = new Intent(this, GenerateCost.class);
-        listCostIntent.putExtra(Costs.INPUT_COST_EXTRA, passedCostId);
+    public void newObservation(View view) {
+        Intent listObservationIntent = new Intent(this, GenerateObservation.class);
+        listObservationIntent.putExtra(Observation.INPUT_COST_EXTRA, passedCostId);
 
         System.out.println(passedCostId);
 
-        startActivity(listCostIntent);
+        startActivity(listObservationIntent);
 
     }
 
-    public void deleteNoteCost(View view) {
-        SQLiteManagerCost sqLiteManager = SQLiteManagerCost.instanceOfDatabase(this);
+    public void deleteNoteObservation(View view) {
+        SQLiteManagerObservation sqLiteManager = SQLiteManagerObservation.instanceOfDatabase(this);
         sqLiteManager.deleteCost(passedCostId);
 
         Intent backHome = new Intent(getApplicationContext(), MainActivity.class);

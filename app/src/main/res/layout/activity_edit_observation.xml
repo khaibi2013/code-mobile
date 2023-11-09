@@ -6,7 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".EditCost">
+        tools:context=".EditObservation">
 
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -23,7 +23,7 @@
 <!--                android:backgroundTint="@color/white"-->
 <!--                android:textStyle="bold"-->
 <!--                android:layout_gravity="start"-->
-<!--                android:onClick="deleteNoteCost"></Button>-->
+<!--                android:onClick="deleteNoteObservation"></Button>-->
 
 <!--        <TextView android:layout_width="wrap_content"-->
 <!--                  android:layout_height="wrap_content"-->
@@ -44,27 +44,27 @@
                 android:backgroundTint="@color/white"
                 android:textStyle="bold"
                 android:layout_gravity="end"
-                android:onClick="updateCost"></Button>
+                android:onClick="updateObservation"></Button>
 
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-            android:id="@+id/errorEditCost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/red"
-            android:textStyle="bold"
-            android:layout_gravity="center"></TextView>
+        android:id="@+id/errorEditObservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/red"
+        android:textSize="25sp"
+        android:textStyle="bold"></TextView>
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Type Cost"
-            android:textSize="25sp"
-            android:textColor="@color/darkGray"
-            android:textStyle="bold"
-            android:layout_gravity="center"></TextView>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Observation Name"
+        android:textColor="@color/darkGray"
+        android:textSize="25sp"
+        android:textStyle="bold"></TextView>
 
     <EditText
             android:id="@+id/typeFix"
@@ -79,14 +79,14 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cost $"
+            android:text="Distance Kilometer"
             android:textSize="25sp"
             android:textColor="@color/darkGray"
             android:textStyle="bold"
             android:layout_gravity="center"></TextView>
 
     <EditText
-            android:id="@+id/costFix"
+            android:id="@+id/observationFix"
             android:layout_width="300dp" android:layout_height="wrap_content"
             android:textSize="15sp"
             android:layout_marginTop="20dp"

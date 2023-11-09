@@ -6,7 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".UpdateCost">
+        tools:context=".UpdateObservation">
 
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -35,14 +35,14 @@
                 android:backgroundTint="@color/white"
                 android:textStyle="bold"
                 android:layout_gravity="end"
-                android:onClick="updateCost"></Button>
+                android:onClick="updateObservation"></Button>
 
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cost"
+            android:text="Observation"
             android:textSize="25sp"
             android:textColor="@color/darkGray"
             android:textStyle="bold"
@@ -50,7 +50,7 @@
 
 
     <EditText
-            android:id="@+id/costEdit"
+            android:id="@+id/observationEdit"
             android:layout_width="300dp" android:layout_height="wrap_content"
             android:textSize="35sp"
             android:layout_marginTop="20dp"

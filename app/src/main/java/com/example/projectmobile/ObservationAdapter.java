@@ -11,9 +11,9 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-public class CostAdapter extends ArrayAdapter<Costs> {
+public class ObservationAdapter extends ArrayAdapter<Observation> {
 
-    public CostAdapter(Context context, ArrayList<Costs> list) {
+    public ObservationAdapter(Context context, ArrayList<Observation> list) {
 
         super(context,0, list);
     }
@@ -22,10 +22,10 @@ public class CostAdapter extends ArrayAdapter<Costs> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        Costs costs = getItem(position);
+        Observation observation = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.cost_cell, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.observation_cell, parent, false);
 
         }
 
@@ -36,10 +36,10 @@ public class CostAdapter extends ArrayAdapter<Costs> {
 //        TextView noteId = convertView.findViewById(R.id.cellNoteId);
 
 
-        typeCost.setText(costs.getTypeCost());
-        cost.setText(costs.getCost() + " $");
-        comment.setText(costs.getComment());
-        dateTime.setText(costs.getDateTime());
+        typeCost.setText(observation.getTypeCost());
+        cost.setText(observation.getCost() + " km");
+        comment.setText(observation.getComment());
+        dateTime.setText(observation.getDateTime());
 //        noteId.setText(costs.getNoteId());
 
         return convertView;

@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Project Mobile</string>
     <string name="keyword">Keyword</string>
-    <string name="edit_cost">Edit Cost</string>
-    <string name="list_trip">List of the Trip</string>
-    <string name="list_cost">List of the Cost</string>
-    <string name="detail_trip">Details of the Trip</string>
-    <string name="create_cost">Generate Cost</string>
+    <string name="edit_cost">Edit observation</string>
+    <string name="list_hike">List of the Hike</string>
+    <string name="list_observation">List of the observation</string>
+    <string name="detail_trip">Details of the Hike</string>
+    <string name="create_cost">Generate observation</string>
 
 
 

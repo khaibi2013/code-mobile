@@ -7,7 +7,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ListOfExpenses">
+        tools:context=".ListOfObservation">
 
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -23,17 +23,17 @@
                 android:backgroundTint="@color/white"
                 android:textStyle="bold"
                 android:layout_gravity="start"
-                android:onClick="deleteNoteCost"></Button>
+                android:onClick="deleteNoteObservation"></Button>
 
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="create Cost"
-                android:textSize="25sp"
+                android:text="Add Observations"
+                android:textSize="18sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_gravity="end"
-                android:onClick="newCost"/>
+                android:onClick="newObservation"/>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -41,7 +41,7 @@
 
 
     <ListView
-            android:id="@+id/listCostView"
+            android:id="@+id/listObservationView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="1dp"

@@ -8,11 +8,10 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import java.io.Console;
 import java.util.Calendar;
 
-public class EditCost extends AppCompatActivity {
-    private EditText typeCostEdit, costEdit, commentEdit;
+public class EditObservation extends AppCompatActivity {
+    private EditText typeobservationEdit, observationEdit, commentEdit;
     private TextView error;
 
     private Button deleteCButton, dateTimeButton;
@@ -20,13 +19,13 @@ public class EditCost extends AppCompatActivity {
 
     private int mYear, mMonth, mDay;
 
-    Costs selectedCost;
+    Observation selectedCost;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_cost);
+        setContentView(R.layout.activity_edit_observation);
         initWidgets();
         checkForEdit();
 
@@ -36,41 +35,41 @@ public class EditCost extends AppCompatActivity {
     private void checkForEdit() {
 
         Intent previousIntent = getIntent();
-        int passedCostId = previousIntent.getIntExtra(Costs.COST_EDIT_EXTRA, -1);
-        noteID = previousIntent.getIntExtra(Costs.INPUT_COST_EXTRA, -1);
+        int passedCostId = previousIntent.getIntExtra(Observation.COST_EDIT_EXTRA, -1);
+        noteID = previousIntent.getIntExtra(Observation.INPUT_COST_EXTRA, -1);
 
 
 
-        selectedCost  = Costs.getCostForID(passedCostId);
+        selectedCost  = Observation.getCostForID(passedCostId);
 
-        costEdit.setText(selectedCost.getCost());
+        observationEdit.setText(selectedCost.getCost());
         commentEdit.setText(selectedCost.getComment());
         dateTimeButton.setText(selectedCost.getDateTime());
 
-        typeCostEdit.setText(selectedCost.getTypeCost());
+        typeobservationEdit.setText(selectedCost.getTypeCost());
         System.out.println(noteID);
 
     }
 
     private void initWidgets() {
-        costEdit = findViewById(R.id.costFix);
+        observationEdit = findViewById(R.id.observationFix);
         commentEdit = findViewById(R.id.commentFix);
-        error = findViewById(R.id.errorEditCost);
-        typeCostEdit = findViewById(R.id.typeFix);
+        error = findViewById(R.id.errorEditObservation);
+        typeobservationEdit = findViewById(R.id.typeFix);
         dateTimeButton = findViewById(R.id.btn_date_Fix);
 
     }
 
-    public void updateCost(View view) {
-        SQLiteManagerCost sqLiteManager = SQLiteManagerCost.instanceOfDatabase(this);
+    public void updateObservation(View view) {
+        SQLiteManagerObservation sqLiteManager = SQLiteManagerObservation.instanceOfDatabase(this);
         String comment, cost, typeCost, dateTime;
 
-        if(TextUtils.isEmpty(typeCostEdit.getText()) || TextUtils.isEmpty(commentEdit.getText()) || TextUtils.isEmpty(costEdit.getText())){
+        if(TextUtils.isEmpty(typeobservationEdit.getText()) || TextUtils.isEmpty(commentEdit.getText()) || TextUtils.isEmpty(observationEdit.getText())){
             error.setText("Enter all the entries");
         }else {
-            typeCost = String.valueOf(typeCostEdit.getText());
+            typeCost = String.valueOf(typeobservationEdit.getText());
             comment = String.valueOf(commentEdit.getText());
-            cost = String.valueOf(costEdit.getText());
+            cost = String.valueOf(observationEdit.getText());
             dateTime= String.valueOf(dateTimeButton.getText());
 
 
@@ -80,7 +79,7 @@ public class EditCost extends AppCompatActivity {
             selectedCost.setComment(comment);
             selectedCost.setDateTime(dateTime);
             selectedCost.setNoteId(noteID);
-            sqLiteManager.updateCostInDB(selectedCost);
+            sqLiteManager.updateObservationInDB(selectedCost);
 
             finish();
 
@@ -114,7 +113,7 @@ public class EditCost extends AppCompatActivity {
 
     }
 
-//    public void deleteNoteCost(View view) {
+//    public void deleteNoteObservation(View view) {
 //        SQLiteManagerCost sqLiteManager = SQLiteManagerCost.instanceOfDatabase(this);
 //        sqLiteManager.deleteCost(noteID);
 //

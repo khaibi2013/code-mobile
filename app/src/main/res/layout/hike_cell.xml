@@ -14,40 +14,40 @@
             android:textColor="@color/darkGray"
             android:textSize="25sp"/>
     <TextView
-            android:id="@+id/cellDestination"
+            android:id="@+id/cellDistanceDifficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Destination"
+            android:text="Distance Difficulty"
             android:maxLines="1"
             android:layout_marginTop="5dp"
             android:textColor="@color/darkGray"
             android:textSize="19sp"/>
 
     <TextView
-            android:id="@+id/cellDesc"
+            android:id="@+id/cellDistanceLength"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description"
+            android:text="Distance Length"
             android:maxLines="1"
             android:layout_marginTop="5dp"
             android:textColor="@color/darkGray"
             android:textSize="19sp"/>
 
     <TextView
-            android:id="@+id/cellPurpose"
+            android:id="@+id/cellDescribeDistance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Purpose"
+            android:text="Describe the distance"
             android:maxLines="1"
             android:layout_marginTop="5dp"
             android:textColor="@color/darkGray"
             android:textSize="18sp"/>
 
     <TextView
-            android:id="@+id/cellRisk"
+            android:id="@+id/cellParking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Risk"
+            android:text="Parking"
             android:maxLines="1"
             android:layout_marginTop="5dp"
             android:textColor="@color/darkGray"
@@ -72,5 +72,15 @@
             android:layout_marginTop="5dp"
             android:textColor="@color/darkGray"
             android:textSize="10sp"/>
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="97dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="5dp"
+        android:maxLines="1"
+        android:text="location"
+        android:textColor="@color/darkGray"
+        android:textSize="19sp" />
 
 </LinearLayout>

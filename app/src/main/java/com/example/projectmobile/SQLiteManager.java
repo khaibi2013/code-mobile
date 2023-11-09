@@ -17,23 +17,24 @@ public class SQLiteManager extends SQLiteOpenHelper {
     SQLiteDatabase db;
     private static SQLiteManager sqLiteManager;
 
-    private static final String DATABASE_NAME = "NoteTheTripDB";
+    private static final String DATABASE_NAME = "NoteTheHiks";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "Note";
+    private static final String TABLE_NAME = "HIKES";
     private static final String COUNTER = "Counter";
 
     private static final String ID_FIELD = "id";
     private static final String NAME_FIELD = "name";
 
     private static final String DESTINATION_FIELD = "destination";
-    private static final String DESC_FIELD = "desc";
+    private static final String DISTANCE_FIELD = "distance";
 
-    private static final String PURPOSE_FIELD = "purpose";
+    private static final String DESCRIBE_THE_FIELD = "describe";
 
-    private static final String RISKY_FIELD = "risky";
+    private static final String PARKING_FIELD = "parking";
     private static final String DATE_TIME_FIELD = "datetime";
 
     private static final String TIME_FIELD = "time";
+    private static final String LOCATION_FIELD = "location";
     private static final String DELETED_FIELD = "deleted";
 
 
@@ -70,15 +71,17 @@ public class SQLiteManager extends SQLiteOpenHelper {
                 .append(" TEXT, ")
                 .append(DESTINATION_FIELD)
                 .append(" TEXT, ")
-                .append(DESC_FIELD)
+                .append(DISTANCE_FIELD)
                 .append(" TEXT, ")
-                .append(PURPOSE_FIELD)
+                .append(DESCRIBE_THE_FIELD)
                 .append(" TEXT, ")
-                .append(RISKY_FIELD)
+                .append(PARKING_FIELD)
                 .append(" TEXT, ")
                 .append(DATE_TIME_FIELD)
                 .append(" TEXT, ")
                 .append(TIME_FIELD)
+                .append(" TEXT, ")
+                .append(LOCATION_FIELD)
                 .append(" TEXT, ")
                 .append(DELETED_FIELD)
                 .append(" TEXT)");
@@ -92,18 +95,19 @@ public class SQLiteManager extends SQLiteOpenHelper {
 
     }
 
-    public void addTripIntoDatabase(Trip note){
+    public void addTripIntoDatabase(Hike note){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(ID_FIELD, note.getId());
         contentValues.put(NAME_FIELD, note.getTitle());
         contentValues.put(DESTINATION_FIELD, note.getDestination());
-        contentValues.put(DESC_FIELD, note.getDescription());
-        contentValues.put(PURPOSE_FIELD, note.getPurpose());
-        contentValues.put(RISKY_FIELD, note.getGroupRisky());
+        contentValues.put(DISTANCE_FIELD, note.getDescription());
+        contentValues.put(DESCRIBE_THE_FIELD, note.getPurpose());
+        contentValues.put(PARKING_FIELD, note.getGroupRisky());
         contentValues.put(DATE_TIME_FIELD, note.getDatetime());
         contentValues.put(TIME_FIELD, note.getTime());
+        contentValues.put(LOCATION_FIELD, note.getLocation());
         contentValues.put(DELETED_FIELD, getStringFromDate(note.getDeleted()));
 
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
@@ -120,7 +124,7 @@ public class SQLiteManager extends SQLiteOpenHelper {
         try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM "+ TABLE_NAME + " WHERE "+ NAME_FIELD +  " LIKE ? "  , new String[] { "%" + keyword + "%" } ))
         {
 
-            Trip.searchNotes.clear();
+            Hike.searchNotes.clear();
             if(result.getCount() != 0)
             {
                 while (result.moveToNext())
@@ -133,10 +137,11 @@ public class SQLiteManager extends SQLiteOpenHelper {
                     String risk = result.getString(6);
                     String date = result.getString(7);
                     String time = result.getString(8);
-                    String stringDeleted = result.getString(9);
+                    String location = result.getString(9);
+                    String stringDeleted = result.getString(10);
                     Date deleted = getDateFromString(stringDeleted);
-                    Trip note = new Trip(id,title,destination,desc,purpose,risk,date,time,deleted);
-                    Trip.searchNotes.add(note);
+                    Hike note = new Hike(id,title,destination,desc,purpose,risk,date,time,location,deleted);
+                    Hike.searchNotes.add(note);
                 }
             }
         }
@@ -150,7 +155,7 @@ public class SQLiteManager extends SQLiteOpenHelper {
         try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME , null))
         {
 
-            Trip.notes.clear();
+            Hike.notes.clear();
             if(result.getCount() != 0)
             {
                 while (result.moveToNext())
@@ -163,10 +168,11 @@ public class SQLiteManager extends SQLiteOpenHelper {
                     String risk = result.getString(6);
                     String date = result.getString(7);
                     String time = result.getString(8);
-                    String stringDeleted = result.getString(9);
+                    String location = result.getString(9);
+                    String stringDeleted = result.getString(10);
                     Date deleted = getDateFromString(stringDeleted);
-                    Trip note = new Trip(id,title,destination,desc,purpose,risk,date,time,deleted);
-                    Trip.notes.add(note);
+                    Hike note = new Hike(id,title,destination,desc,purpose,risk,date,time,location,deleted);
+                    Hike.notes.add(note);
                 }
             }
         }
@@ -184,18 +190,19 @@ public class SQLiteManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateTripDB(Trip note)
+    public void updateTripDB(Hike note)
     {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ID_FIELD, note.getId());
         contentValues.put(NAME_FIELD, note.getTitle());
         contentValues.put(DESTINATION_FIELD, note.getDestination());
-        contentValues.put(DESC_FIELD, note.getDescription());
-        contentValues.put(PURPOSE_FIELD, note.getPurpose());
-        contentValues.put(RISKY_FIELD, note.getGroupRisky());
+        contentValues.put(DISTANCE_FIELD, note.getDescription());
+        contentValues.put(DESCRIBE_THE_FIELD, note.getPurpose());
+        contentValues.put(PARKING_FIELD, note.getGroupRisky());
         contentValues.put(DATE_TIME_FIELD, note.getDatetime());
         contentValues.put(TIME_FIELD, note.getTime());
+        contentValues.put(LOCATION_FIELD, note.getLocation());
         contentValues.put(DELETED_FIELD, getStringFromDate(note.getDeleted()));
 
 

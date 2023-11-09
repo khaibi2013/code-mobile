@@ -3,11 +3,11 @@ package com.example.projectmobile;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Costs {
+public class Observation {
 
-    public static ArrayList<Costs> listCosts = new ArrayList<>();
-    public static String COST_EDIT_EXTRA =  "costEdit";
-    public static String COST_LIST_EXTRA =  "costEdit";
+    public static ArrayList<Observation> listObservations = new ArrayList<>();
+    public static String COST_EDIT_EXTRA =  "observationEdit";
+    public static String COST_LIST_EXTRA =  "observationEdit";
 
     public static String INPUT_COST_EXTRA =  "inputCost";
 
@@ -51,9 +51,9 @@ public class Costs {
         this.noteId = noteId;
     }
 
-    public static Costs getCostForID(int passedNoteId) {
+    public static Observation getCostForID(int passedNoteId) {
 
-        for (Costs cost : listCosts) {
+        for (Observation cost : listObservations) {
             if (cost.getId() == passedNoteId){
                 return  cost;
             }
@@ -61,9 +61,9 @@ public class Costs {
         return null;
     }
 
-    public static ArrayList<Costs> nonDeleteCost(){
-        ArrayList<Costs> nonDelete = new ArrayList<>();
-        for (Costs cost : listCosts) {
+    public static ArrayList<Observation> nonDeleteCost(){
+        ArrayList<Observation> nonDelete = new ArrayList<>();
+        for (Observation cost : listObservations) {
             if (cost.getDeleted() == null){
                 nonDelete.add(cost);
             }
@@ -105,7 +105,7 @@ public class Costs {
         this.deleted = deleted;
     }
 
-    public Costs(int id,String typeCost ,String cost, String comment, String dateTime,Date deleted) {
+    public Observation(int id, String typeCost , String cost, String comment, String dateTime, Date deleted) {
         this.id = id;
         this.typeCost = typeCost;
         this.cost = cost;
@@ -115,7 +115,7 @@ public class Costs {
         this.deleted = deleted;
     }
 
-    public Costs(int id, String typeCost ,String cost,String comment, String dateTime,Integer noteId) {
+    public Observation(int id, String typeCost , String cost, String comment, String dateTime, Integer noteId) {
         this.id = id;
         this.dateTime = dateTime;
         this.typeCost = typeCost;

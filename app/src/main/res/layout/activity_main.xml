@@ -24,7 +24,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_gravity="start"
-                android:onClick="deleteAllTrip"/>
+                android:onClick="deleteAllHike"/>
 
 <!--        <TextView-->
 <!--                android:layout_width="wrap_content"-->
@@ -42,7 +42,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_gravity="end"
-                android:onClick="newNote"/>
+                android:onClick="newHike"/>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -61,7 +61,7 @@
                 android:maxLines="1"
                 android:textColor="@color/white"
                 android:layout_gravity="start"
-                android:hint="Search Trip"
+                android:hint="Search Hike"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="12dp"></EditText>
         <Button

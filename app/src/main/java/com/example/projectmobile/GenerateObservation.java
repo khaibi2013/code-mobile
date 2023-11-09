@@ -1,6 +1,5 @@
 package com.example.projectmobile;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.text.TextUtils;
@@ -14,10 +13,10 @@ import android.os.Bundle;
 
 import java.util.Calendar;
 
-public class GenerateCost extends AppCompatActivity {
+public class GenerateObservation extends AppCompatActivity {
 
 
-    private EditText typeCostEdit, costEdit, commentEdit;
+    private EditText typeobservationEdit, observationEdit, commentEdit;
     private TextView error;
 
 
@@ -27,12 +26,12 @@ public class GenerateCost extends AppCompatActivity {
     private int mYear, mMonth, mDay;
 
 
-    Costs selectedCost;
+    Observation selectedCost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_generate_cost);
+        setContentView(R.layout.activity_generate_observation);
 
         initWidgets();
         checkForEdit();
@@ -43,7 +42,7 @@ public class GenerateCost extends AppCompatActivity {
 
         Intent previousIntent = getIntent();
 
-        passedCostId = previousIntent.getIntExtra(Costs.INPUT_COST_EXTRA, -1);
+        passedCostId = previousIntent.getIntExtra(Observation.INPUT_COST_EXTRA, -1);
 
         System.out.println(passedCostId);
 
@@ -51,10 +50,10 @@ public class GenerateCost extends AppCompatActivity {
     }
 
     private void initWidgets() {
-        error = findViewById(R.id.errorCreateCost);
-        costEdit = findViewById(R.id.costEdit);
+        error = findViewById(R.id.errorCreateObservation);
+        observationEdit = findViewById(R.id.observationEdit);
         commentEdit = findViewById(R.id.commentEdit);
-        typeCostEdit = findViewById(R.id.costTypeEdit);
+        typeobservationEdit = findViewById(R.id.observationTypeEdit);
         btnDatePicker=(Button)findViewById(R.id.btn_date);
 
 
@@ -67,22 +66,22 @@ public class GenerateCost extends AppCompatActivity {
     }
 
 
-    public void saveCost(View view) {
-        SQLiteManagerCost sqLiteManager = SQLiteManagerCost.instanceOfDatabase(this);
+    public void saveObservation(View view) {
+        SQLiteManagerObservation sqLiteManager = SQLiteManagerObservation.instanceOfDatabase(this);
         String comment, cost, typeCost, dateTime;
-        if(TextUtils.isEmpty(commentEdit.getText()) || TextUtils.isEmpty(costEdit.getText()) || TextUtils.isEmpty(typeCostEdit.getText())){
+        if(TextUtils.isEmpty(commentEdit.getText()) || TextUtils.isEmpty(observationEdit.getText()) || TextUtils.isEmpty(typeobservationEdit.getText())){
             error.setText("Enter all the entries");
         }else {
             comment = String.valueOf(commentEdit.getText());
-            cost = String.valueOf(costEdit.getText());
-            typeCost = String.valueOf(typeCostEdit.getText());
+            cost = String.valueOf(observationEdit.getText());
+            typeCost = String.valueOf(typeobservationEdit.getText());
             dateTime = String.valueOf(btnDatePicker.getText());
 
-            int id = Costs.listCosts.size();
+            int id = Observation.listObservations.size();
 
-            Costs newCost = new Costs(id,typeCost,cost, comment, dateTime ,passedCostId);
-            Costs.listCosts.add(newCost);
-            sqLiteManager.addCostToDatabase(newCost);
+            Observation newObservation = new Observation(id,typeCost,cost, comment, dateTime ,passedCostId);
+            Observation.listObservations.add(newObservation);
+            sqLiteManager.addCostToDatabase(newObservation);
 
             finish();
 

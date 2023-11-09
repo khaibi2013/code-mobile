@@ -3,9 +3,9 @@ package com.example.projectmobile;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Trip {
-    public static ArrayList<Trip> notes = new ArrayList<>();
-    public static ArrayList<Trip> searchNotes = new ArrayList<>();
+public class Hike {
+    public static ArrayList<Hike> notes = new ArrayList<>();
+    public static ArrayList<Hike> searchNotes = new ArrayList<>();
     public static String NOTE_EDIT_EXTRA =  "noteEdit";
 
     private int id;
@@ -20,6 +20,8 @@ public class Trip {
 
     private String purpose;
     private String destination;
+
+    private String location;
 
     private String groupRisky;
 
@@ -57,9 +59,9 @@ public class Trip {
         this.datetime = datetime;
     }
 
-    public static Trip getNoteForID(int passedNoteId) {
+    public static Hike getNoteForID(int passedNoteId) {
 
-        for (Trip note : notes) {
+        for (Hike note : notes) {
             if (note.getId() == passedNoteId){
                 return  note;
             }
@@ -67,9 +69,9 @@ public class Trip {
         return null;
     }
 
-    public static ArrayList<Trip> nonDeleteNote(){
-        ArrayList<Trip> nonDelete = new ArrayList<>();
-        for (Trip note : notes) {
+    public static ArrayList<Hike> nonDeleteNote(){
+        ArrayList<Hike> nonDelete = new ArrayList<>();
+        for (Hike note : notes) {
             if (note.getDeleted() == null){
                 nonDelete.add(note);
             }
@@ -78,9 +80,9 @@ public class Trip {
 
     }
 
-    public static ArrayList<Trip> searchNotes(){
-        ArrayList<Trip> nonDelete = new ArrayList<>();
-        for (Trip note : searchNotes) {
+    public static ArrayList<Hike> searchNotes(){
+        ArrayList<Hike> nonDelete = new ArrayList<>();
+        for (Hike note : searchNotes) {
             if (note.getDeleted() == null){
                 nonDelete.add(note);
             }
@@ -89,7 +91,7 @@ public class Trip {
 
     }
 
-    public Trip() {
+    public Hike() {
     }
 
     public int getId() {
@@ -120,7 +122,7 @@ public class Trip {
         return description;
     }
 
-    public Trip(int id, String title, String destination, String description, String purpose , String groupRisky, String datetime, String time, Date deleted) {
+    public Hike(int id, String title, String destination, String description, String purpose , String groupRisky, String datetime, String time, String location, Date deleted) {
         this.id = id;
         this.datetime = datetime;
         this.destination = destination;
@@ -129,10 +131,12 @@ public class Trip {
         this.description = description;
         this.purpose = purpose;
         this.groupRisky = groupRisky;
+        this.location = location;
         this.deleted = deleted;
+
     }
 
-    public Trip(int id, String title, String description, String datetime, String time, String groupRisky, String purpose, String destination) {
+    public Hike(int id, String title, String description, String datetime, String time, String groupRisky, String purpose, String location, String destination) {
         this.id = id;
         this.title = title;
         this.datetime = datetime;
@@ -141,6 +145,7 @@ public class Trip {
         this.description = description;
         this.destination = destination;
         this.time = time;
+        this.location = location;
         deleted = null;
     }
 
@@ -155,5 +160,13 @@ public class Trip {
     public Date getDeleted() {
 
         return deleted;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

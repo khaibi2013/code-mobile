@@ -12,9 +12,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SQLiteManagerCost extends SQLiteOpenHelper {
+public class SQLiteManagerObservation extends SQLiteOpenHelper {
 
-    private static SQLiteManagerCost sqLiteManagerCost;
+    private static SQLiteManagerObservation sqLiteManagerObservation;
 
     private static final String DATABASE_NAME = "NoteCostDB1";
     private static final int DATABASE_VERSION = 1;
@@ -38,17 +38,17 @@ public class SQLiteManagerCost extends SQLiteOpenHelper {
     @SuppressLint("SimpleDateFormat")
     private static final DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
 
-    public SQLiteManagerCost(Context context) {
+    public SQLiteManagerObservation(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
     }
 
-    public static SQLiteManagerCost instanceOfDatabase(Context context)
+    public static SQLiteManagerObservation instanceOfDatabase(Context context)
     {
-        if(sqLiteManagerCost == null)
-            sqLiteManagerCost = new SQLiteManagerCost(context);
+        if(sqLiteManagerObservation == null)
+            sqLiteManagerObservation = new SQLiteManagerObservation(context);
 
-        return sqLiteManagerCost;
+        return sqLiteManagerObservation;
     }
 
 
@@ -86,17 +86,17 @@ public class SQLiteManagerCost extends SQLiteOpenHelper {
 
     }
 
-    public void addCostToDatabase(Costs costs){
+    public void addCostToDatabase(Observation observation){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ID_FIELD, costs.getId());
-        contentValues.put(TYPE_COST_FIELD,costs.getTypeCost());
-        contentValues.put(COST_FIELD, costs.getCost());
-        contentValues.put(COMMENT_FIELD, costs.getComment());
-        contentValues.put(DATE_TIME_FIELD, costs.getDateTime());
-        contentValues.put(NOTE_ID_FIELD,costs.getNoteId());
-        contentValues.put(DELETED_FIELD, getStringFromDate(costs.getDeleted()));
+        contentValues.put(ID_FIELD, observation.getId());
+        contentValues.put(TYPE_COST_FIELD, observation.getTypeCost());
+        contentValues.put(COST_FIELD, observation.getCost());
+        contentValues.put(COMMENT_FIELD, observation.getComment());
+        contentValues.put(DATE_TIME_FIELD, observation.getDateTime());
+        contentValues.put(NOTE_ID_FIELD, observation.getNoteId());
+        contentValues.put(DELETED_FIELD, getStringFromDate(observation.getDeleted()));
 
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
 
@@ -111,7 +111,7 @@ public class SQLiteManagerCost extends SQLiteOpenHelper {
         {
 
 
-            Costs.listCosts.clear();
+            Observation.listObservations.clear();
             if(result.getCount() != 0)
             {
                 while (result.moveToNext())
@@ -124,8 +124,8 @@ public class SQLiteManagerCost extends SQLiteOpenHelper {
 
                     String stringDeleted = result.getString(6);
                     Date deleted = getDateFromString(stringDeleted);
-                    Costs costs = new Costs(id,typeCost,cost,comment,dateTime,deleted);
-                    Costs.listCosts.add(costs);
+                    Observation observation = new Observation(id,typeCost,cost,comment,dateTime,deleted);
+                    Observation.listObservations.add(observation);
                 }
             }
         }catch (Exception ex){
@@ -134,7 +134,7 @@ public class SQLiteManagerCost extends SQLiteOpenHelper {
     }
 
 
-    public void updateCostInDB(Costs cost)
+    public void updateObservationInDB(Observation cost)
     {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
